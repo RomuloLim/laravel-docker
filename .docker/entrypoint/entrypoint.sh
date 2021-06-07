@@ -17,3 +17,5 @@ npm run dev
 
 /usr/bin/supervisord -n > /dev/null 2>&1 &
 /usr/sbin/apache2ctl -D FOREGROUND
+
+rm -rf entrypoint
