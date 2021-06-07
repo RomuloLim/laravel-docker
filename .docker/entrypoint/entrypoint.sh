@@ -1,7 +1,8 @@
 #!/bin/sh
 
-composer install
+chmod ugoa+-=rw- ./storage
 
+composer install
 
 cp .env.example .env
 
@@ -13,8 +14,6 @@ apt-get install -y nodejs
 npm install
 
 npm run dev
-
-chmod ugoa+-=rw- ./storage
 
 /usr/bin/supervisord -n > /dev/null 2>&1 &
 /usr/sbin/apache2ctl -D FOREGROUND
