@@ -1,8 +1,8 @@
 #!/bin/sh
 
-chmod ugoa+-=rw- ./storage
-
 composer install
+
+chmod 777 -R ./storage/logs ./storage/framework
 
 cp .env.example .env
 

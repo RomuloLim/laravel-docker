@@ -32,8 +32,9 @@ services:
       - network
   pgadmin4:
     image: dpage/pgadmin4
+    container_name: pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: "roo@root.com"
+      PGADMIN_DEFAULT_EMAIL: "root@root.com"
       PGADMIN_DEFAULT_PASSWORD: "root"
     ports:
       - "1616:80"
