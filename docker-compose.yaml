@@ -30,6 +30,16 @@ services:
       - POSTGRES_PASSWORD=root
      networks:
       - network
+  pgadmin4:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "roo@root.com"
+      PGADMIN_DEFAULT_PASSWORD: "root"
+    ports:
+      - "1616:80"
+    networks:
+      - network
+
 
 networks:
  network: 
