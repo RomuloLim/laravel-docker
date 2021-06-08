@@ -5,7 +5,7 @@ services:
     build:
       context: ./
     ports:
-      - "80:80"
+      - "800:80"
       - "443:443"
     volumes:
       - ./application:/var/www/html

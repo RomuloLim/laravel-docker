@@ -1,5 +1,9 @@
 FROM php:7.4-apache
 
+# Use the default production configuration
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
+
 USER root
 
 WORKDIR /var/www/html
