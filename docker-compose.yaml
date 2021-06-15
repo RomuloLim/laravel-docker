@@ -7,11 +7,6 @@ services:
     ports:
       - "800:80"
       - "443:443"
-    volumes:
-      - ./application:/var/www/html
-      - ./.docker/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
-      - ./.docker/entrypoint:/var/www/html/entrypoint
-      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
     networks:
       - network
 
@@ -24,7 +19,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./.docker/database/data:/var/lib/postgresql/data
+      - dbdata:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
@@ -45,3 +40,6 @@ networks:
   network:
     name: network
     driver: bridge
+    
+volumes:
+  dbdata:
