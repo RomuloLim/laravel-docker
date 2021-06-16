@@ -44,7 +44,6 @@ RUN chown -R www-data:www-data /var/www/html \
 COPY ./ssh-config /etc/ssh
 COPY ./entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/sbin/tini", "--"]
 EXPOSE 2222 80
 
 CMD ["/entrypoint.sh"]
