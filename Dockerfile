@@ -40,10 +40,13 @@ RUN chown -R www-data:www-data /var/www/html \
 
 
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends openssh-server \
+    && echo "root:Docker!" | chpasswd
 
 COPY ./ssh-config /etc/ssh
 COPY ./entrypoint.sh /entrypoint.sh
 
-EXPOSE 2222 8080
+EXPOSE 2222 80
 
-CMD ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
