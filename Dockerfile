@@ -38,9 +38,14 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
 
-# ------------------------
-# SSH Server support
-# ------------------------
-RUN apt-get update \ 
-  && apt-get install -y --no-install-recommends openssh-server \
-  && echo "root:Docker!" | chpasswd
+# Install OpenSSH and set the password for root to "Docker!". In this example, "apk add" is the install instruction for an Alpine Linux-based image.
+RUN apk add openssh \
+     && echo "root:Docker!" | chpasswd 
+
+# Copy the sshd_config file to the /etc/ssh/ directory
+COPY sshd_config /etc/ssh/
+
+# Open port 2222 for SSH access
+EXPOSE 80 2222
+
+ENTRYPOINT [bash, /usr/sbin/sshd]
