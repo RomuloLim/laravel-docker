@@ -8,11 +8,6 @@ USER root
 
 WORKDIR /var/www/html
 
-COPY  ./application /var/www/html \
-      ./.docker/vhost.conf /etc/apache2/sites-enabled/000-default.conf \
-      ./.docker/entrypoint /var/www/html/entrypoint \
-      ./docker/php/php.ini /usr/local/etc/php/php.ini
-
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libpq-dev \
