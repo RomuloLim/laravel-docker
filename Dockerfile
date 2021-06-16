@@ -2,7 +2,7 @@ FROM php:7.4-apache
 
 # Use the default production configuration
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
-
+RUN ln -s /home/site/wwwroot /var/www/html
 
 USER root
 
