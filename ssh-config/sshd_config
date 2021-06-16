@@ -1,0 +1,19 @@
+
+# This is ssh server systemwide configuration file.
+# required by Azure AppServices
+#
+Port                    2222
+Ciphers                 aes128-cbc,3des-cbc,aes256-cbc
+MACs                    hmac-sha1,hmac-sha1-96
+PermitRootLogin         yes
+PasswordAuthentication  yes
+ListenAddress           0.0.0.0
+
+# Other
+# http://man.openbsd.org/sshd_config
+#
+LoginGraceTime        180
+X11Forwarding         no
+StrictModes           yes
+SyslogFacility        DAEMON
+PermitEmptyPasswords  no
