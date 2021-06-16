@@ -38,8 +38,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
 
-# copia o entreypoint
-COPY ./.docker/entrypoint /var/www/entrypoint
-
-# informa o Entrypoint
-ENTRYPOINT [ "/var/www/entrypoint/entrypoint.sh" ]
+# ------------------------
+# SSH Server support
+# ------------------------
+RUN apt-get update \ 
+  && apt-get install -y --no-install-recommends openssh-server \
+  && echo "root:Docker!" | chpasswd
