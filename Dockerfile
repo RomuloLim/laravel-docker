@@ -44,6 +44,6 @@ RUN chown -R www-data:www-data /var/www/html \
 COPY ./ssh-config /etc/ssh
 COPY ./entrypoint.sh /entrypoint.sh
 
-EXPOSE 2222 80
+EXPOSE 2222 8080
 
 CMD ["/entrypoint.sh"]
