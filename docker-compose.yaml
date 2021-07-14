@@ -5,13 +5,13 @@ services:
     build:
       context: ./
     ports:
-      - "80:80"
-      - "443:443"
+      - "8000:80"
+      - "8443:443"
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/site/wwwroot:/var/www/html
-      - ${WEBAPP_STORAGE_HOME}/site/wwwroot/.docker/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
-      - ${WEBAPP_STORAGE_HOME}/site/wwwroot/.docker/entrypoint:/var/www/html/entrypoint
-      - ${WEBAPP_STORAGE_HOME}/site/wwwroot/./docker/php/php.ini:/usr/local/etc/php/php.ini
+      - ./application/:/var/www/html
+      - ./application/:.docker/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
+      - ./application/:.docker/entrypoint:/var/www/html/entrypoint
+      - ./application/:./docker/php/php.ini:/usr/local/etc/php/php.ini
     networks:
       - network
 
