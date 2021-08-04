@@ -6,12 +6,21 @@ services:
       context: ./
     ports:
       - "8000:80"
+<<<<<<< HEAD
       # - "8443:443"
     volumes:
       - ./application:/var/www/html
       - ./.docker/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
       - ./.docker/entrypoint:/var/www/html/entrypoint
       - ./.docker/php:/usr/local/etc/php
+=======
+      - "8443:443"
+    volumes:
+      - ./application/:/var/www/html
+      - ./application/:.docker/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
+      - ./application/:.docker/entrypoint:/var/www/html/entrypoint
+      - ./application/:./docker/php/php.ini:/usr/local/etc/php/php.ini
+>>>>>>> f9d13ad4951bb20f01c907f5c9bcb5d2e3685cc8
     networks:
       - network
 
