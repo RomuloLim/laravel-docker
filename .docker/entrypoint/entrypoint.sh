@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 composer install
 
-chmod 777 -R ./storage/logs ./storage/framework
+chmod -R 775 storage
 
 cp .env.example .env
 
@@ -17,5 +17,3 @@ npm run dev
 
 /usr/bin/supervisord -n > /dev/null 2>&1 &
 /usr/sbin/apache2ctl -D FOREGROUND
-
-rm -rf entrypoint

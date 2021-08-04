@@ -1,8 +1,8 @@
 FROM php:7.4-apache
 
 # Use the default production configuration
-RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
-RUN ln -s /home/site/wwwroot /var/www/html
+RUN cp "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+RUN ln -s ./application /var/www/html
 
 USER root
 
@@ -32,21 +32,24 @@ RUN mkdir /var/log/webhook
 # copia os arquivos de configuração do Supervisor
 COPY ./.docker/supervisor/conf.d /etc/supervisor/conf.d
 
+RUN apt-get install curl
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN chown -R www-data:www-data /var/www/html \
     && a2enmod rewrite
 
-
+RUN apt install sudo
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+RUN apt-get update && apt-get install -y nodejs
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends openssh-server \
     && echo "root:Docker!" | chpasswd
 
-COPY ./ssh-config /etc/ssh
-COPY ./entrypoint.sh /entrypoint.sh
+CMD npm install
 
 EXPOSE 2222 80
 
-ENTRYPOINT ["/entrypoint.sh"]
+
+ENTRYPOINT ["entrypoint/entrypoint.sh"]
