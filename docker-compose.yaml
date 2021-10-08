@@ -1,17 +1,14 @@
 version: "3.8"
 services:
   php-apache:
-    container_name: php-apache
-    build:
-      context: ./
+    container_name: laravel-app
+    build: .
     ports:
       - "8000:80"
       # - "8443:443"
     volumes:
-      - ./application:/var/www/html
-      - ./.docker/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
-      - ./.docker/entrypoint:/var/www/html/entrypoint
-      - ./.docker/php:/usr/local/etc/php
+      - ./application:/usr/share/nginx
+
     networks:
       - network
 
